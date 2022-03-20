@@ -1,7 +1,7 @@
-adsi_at2
+Advanced Data Science Innovation
 ==============================
 
-A short description of the project.
+Predicting beer_style based on user ratings, using custom **Neural Network (PyTorch)**
 
 Project Organization
 ------------

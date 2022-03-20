@@ -7,9 +7,9 @@ import pandas as pd
 
 # instantiate a FastAPI() class and save it into a variable called app
 app = FastAPI()
-
+  
 # load your trained model from models folder and save it into a variable called gmm_pipe
-gmm_pipe = load('../models/pytorch_multi_beer_style.lib')
+# gmm_pipe = load('../models/pytorch_multi_beer_style.lib')
 
 # create a function called read_root() that will return a dictionary with Hello as key and World as value. Add a decorator to it in order to add a GET endpoint to app on the root
 @app.get("/")
@@ -33,10 +33,3 @@ def format_features(review_aroma: float, review_appearance: float, review_palate
         'beer_abv': [beer_abv]
     }
 
-
-@app.get("/beer/predict")
-def predict(review_aroma: float, review_appearance: float, review_palate: float, review_taste: float, beer_abv: float):
-    features = format_features(review_aroma,review_appearance,review_palate,review_taste,beer_abv)
-    obs = pd.DataFrame(features)
-    #pred = gmm_pipe.predict(obs)
-    return 'predict pred(...)'

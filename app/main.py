@@ -1,4 +1,3 @@
-from pickletools import long1
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
 from joblib import load
@@ -51,7 +50,7 @@ def format_features(brew_index: int, review_aroma: float, review_appearance: flo
 # 'brewery_name', 'review_aroma', 'review_appearance', 'review_palate', 'review_taste', 'beer_abv', 'beer_style'
 
 # define a function called predict
-@app.get("/predict")
+@app.get("/predict/beer")
 def predict(brewery_name: str, review_aroma: float, review_appearance: float, review_palate: float, review_taste: float, beer_abv: float):
     # convert csv dataframe into series & get the index of the brewery_name
     brew_index = list(brew_name['0'].squeeze())
@@ -72,12 +71,15 @@ def predict(brewery_name: str, review_aroma: float, review_appearance: float, re
     
 
 """
+# Testing in localhost:8080
+
 docker build -t gmm-fastapi:latest .
 
-http://localhost:8080
+docker run -dit --rm --name adsi_at2_fastapi -p 8080:80 gmm-fastapi:latest
 
-review_aroma,review_appearance,review_palate,review_taste,beer_abv
-http://localhost:8080/beer/predict/params?brewery_name=Caldera+Brewing+Company&review_aroma=1.5&review_appearance=2.5&review_palate=3.5&review_taste=4.5&beer_abv=5.5
+http://localhost:8080
+http://localhost:8080/docs
+http://localhost:8080/predict?brewery_name=Sierra%20Nevada%20Brewing%20Co.&review_aroma=5&review_appearance=5&review_palate=5&review_taste=5&beer_abv=5
 
 """    
         

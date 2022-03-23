@@ -1,3 +1,5 @@
+# original LAB exercises
+
 scikit-learn==0.22.1
 
 pandas==0.25.3
@@ -8,3 +10,4 @@ fastapi==0.63.0
 
 uvicorn==0.13.3
 
+joblib==1.1.0

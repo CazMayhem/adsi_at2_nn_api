@@ -1,3 +1,4 @@
+from pickletools import long1
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
 from joblib import load
@@ -14,8 +15,8 @@ app = FastAPI()
 # ===== But if I comment them all out - the API continues happily        =======
 
 # read in list of brewery/beer names to convert to number/index
-df_brew_name = pd.read_csv('data/brewery_name_list.csv')   
-# df_beer_style = pd.read_csv('data/processed/beer_style_list.csv')   
+brew_name = pd.read_csv('data/brewery_name_list.csv')   
+beer_style = pd.read_csv('data/beer_style_list.csv')   
 
 # load in the saved pytorch model
 model_pt = torch.load('../models/pytorch_multi_beer_style.pt')
@@ -35,9 +36,8 @@ def healthcheck():
 
 
 # create a function called format_features() with genre, age, income and spending as input parameters that will return a dictionary with the names of the features as keys and the inpot parameters as lists
-def format_features(brewery_name: str, review_aroma: float, review_appearance: float, review_palate: float, review_taste: float, beer_abv: float):
+def format_features(brew_index: int, review_aroma: float, review_appearance: float, review_palate: float, review_taste: float, beer_abv: float):
     # convert brewery name into numeric index
-    brew_index = list(pd.Series(df_brew_name['0'].values)).index(brewery_name)
     return {
         'brewery_name': [brew_index],
         'review_aroma': [review_aroma],
@@ -51,15 +51,24 @@ def format_features(brewery_name: str, review_aroma: float, review_appearance: f
 # 'brewery_name', 'review_aroma', 'review_appearance', 'review_palate', 'review_taste', 'beer_abv', 'beer_style'
 
 # define a function called predict
-@app.get("/beer/predict")
+@app.get("/predict")
 def predict(brewery_name: str, review_aroma: float, review_appearance: float, review_palate: float, review_taste: float, beer_abv: float):
-    features = format_features(brewery_name,review_aroma, review_appearance, review_palate, review_taste, beer_abv)
+    # convert csv dataframe into series & get the index of the brewery_name
+    brew_index = list(brew_name['0'].squeeze())
+    brew_index = brew_index.index(brewery_name)
+    # convert the features into a dict dataset
+    features = format_features(brew_index, review_aroma, review_appearance, review_palate, review_taste, beer_abv)
     obs = pd.DataFrame(features)
     # convert observations to Tensor
     obs_dataset = torch.Tensor(np.array(obs))
     # Make predictions
-    output = model_pt(obs_dataset)  
-    return JSONResponse(output.tolist()) 
+    with torch.no_grad():
+         output = model_pt(obs_dataset) 
+    # convert output tensor to numpy - use astype to convert to integer
+    output = torch.argmax(output).numpy().astype(int) 
+    # final output
+    return { 'Predicted beer style is =>' : beer_style.squeeze()[output] }  
+
     
 
 """

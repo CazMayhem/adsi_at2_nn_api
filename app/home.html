@@ -1,0 +1,43 @@
+<p>&nbsp;</p>
+<!-- Advance Data Science Innovation - Assignment 2 -->
+<h2>Welcome To The <strong style="background-color: #317399; padding: 0 5px; color: #fff;">Bestest Beer Predictor!</strong></h2>
+<p style="font-size: 1.2em;">This web app demonstrate a machine learning model - to&nbsp;will predict any of 104 different types of beers - based on ratings entered for the following categories:</p>
+<ol>
+<li style="font-size: 1.2em;">Brewery name - 5742 available breweries</li>
+<li style="font-size: 1.2em;">Aroma - 1 to 5</li>
+<li style="font-size: 1.2em;">Appearance - 0 to 5</li>
+<li style="font-size: 1.2em;">Palate - 1 to 5</li>
+<li style="font-size: 1.2em;">Taste - 1 to 5</li>
+<li style="font-size: 1.2em;">Alcohol by volume</li>
+</ol>
+<p style="font-size: 1.2em;">The machine learning model was developed using&nbsp;<strong>custom neural networks</strong>&nbsp;with <a href="https://pytorch.org/docs/stable/index.html">PyTorch</a>.</p>
+<p style="font-size: 1.2em;"><strong style="background-color: #317399; padding: 0 5px; color: #fff;">API</strong> endpoints available by this web app:</p>
+<p>1.&nbsp;<a href="http://pure-shelf-34977.herokuapp.com/">http://pure-shelf-34977.herokuapp.com/</a></p>
+<ul>
+<li>Inputs: none</li>
+<li>Output: information page</li>
+</ul>
+<p>2.&nbsp;<a href="http://pure-shelf-34977.herokuapp.com/health/">http://pure-shelf-34977.herokuapp.com/health/</a></p>
+<ul>
+<li>Inputs: none</li>
+<li>Output: daily health tips</li>
+</ul>
+<p style="padding-left: 30px;"><strong>Tip:</strong> for a bit of fun, press &lt;cmd-R&gt; (Mac) or &lt;ctrl-R&gt; (Windows) to refresh the page multiple times :)</p>
+<p>3.&nbsp;<a href="http://pure-shelf-34977.herokuapp.com/health/">http://pure-shelf-34977.herokuapp.com/beer/type/</a></p>
+<ul>
+<li>Inputs:&nbsp; 6 criteria above - brewery name, aroma, etc...</li>
+<li>Output: One predicted beer style<br /><br /></li>
+<li>Example <strong>API</strong> call:&nbsp;
+<p style="padding-left: 0px;"><a href="https://pure-shelf-34977.herokuapp.com/beer/type?brewery_name=Crown%20Brewing&amp;review_aroma=6&amp;review_appearance=5&amp;review_palate=4.5&amp;review_taste=3.5&amp;beer_abv=1.5">https://pure-shelf-34977.herokuapp.com/beer/type?brewery_name=Crown%20Brewing&amp;review_aroma=6&amp;review_appearance=5&amp;review_palate=4.5&amp;review_taste=3.5&amp;beer_abv=1.5</a></p>
+</li>
+</ul>
+<p>&nbsp;4.&nbsp;<a href="http://pure-shelf-34977.herokuapp.com/health/">http://pure-shelf-34977.herokuapp.com/beers/type/</a></p>
+<ul>
+<li>Inputs:&nbsp; Multiple instances of the&nbsp;6 criteria above</li>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;- brewery name, aroma, etc...
+<li>Output: Multiple predicted beer styles<br /><br /></li>
+<li>Example <strong>API</strong> call:
+<p style="padding-left: 0px;"><a href="https://pure-shelf-34977.herokuapp.com/beers/type?beer_input=Stone%20Brewing%20Co.%2C1.1%2C2.2%2C3.3%2C4.4%2C5.5&amp;beer_input=Crown%20Brewing%2C1.1%2C1.2%2C1.3%2C1.4%2C1.5">https://pure-shelf-34977.herokuapp.com/beers/type?beer_input=Stone%20Brewing%20Co.%2C1.1%2C2.2%2C3.3%2C4.4%2C5.5&amp;beer_input=Crown%20Brewing%2C1.1%2C1.2%2C1.3%2C1.4%2C1.5</a></p>
+</li>
+</ul>
+<p><strong style="font-size: 1.2em;">Source code</strong>&nbsp;available&nbsp;=&gt; <a href="https://github.com/CazMayhem/adsi_at2_nn_api">Github.com</a><br /> (c) Carol Paipa 2022</p>

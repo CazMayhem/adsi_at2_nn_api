@@ -8,3 +8,7 @@ fastapi==0.63.0
 
 uvicorn==0.13.3
 
+streamlit
+
+altair==4.2.0
+

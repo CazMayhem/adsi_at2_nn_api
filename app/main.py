@@ -64,15 +64,17 @@ def generate_html_response_health():
     if rand_id==0:
         html_tip = """<h2>Today's <strong style="background-color: #317399; padding: 0 5px; color: #fff;">random</strong> health tip</h2>"""
     elif rand_id==1:
-        html_tip = """<h2><strong style="background-color: #317399; padding: 0 5px; color: #fff;">Today's </strong> random health tip</h2>"""
+        html_tip = """<h2><strong style="background-color: #317399; padding: 0 5px; color: #fff;">Today's</strong> random health tip</h2>"""
     elif rand_id==2:
-        html_tip = """<h2>Today's random <strong style="background-color: #317399; padding: 0 5px; color: #fff;">health </strong>tip</h2>"""
+        html_tip = """<h2>Today's random <strong style="background-color: #317399; padding: 0 5px; color: #fff;">health</strong> tip</h2>"""
     elif rand_id==3:
         html_tip = """<h2>Today's random health <strong style="background-color: #317399; padding: 0 5px; color: #fff;">tip</strong></h2>"""
     elif rand_id==4:
         html_tip = """<h2><strong style="background-color: #317399; padding: 0 5px; color: #fff;">Today's random health tip</strong></h2>"""
        
-    html_tip = f'{html_tip}<p style="font-size: 1.2em;">{health_tips[random.randint(0, len(health_tips))]}</p>'
+    html_end = """<p style="font-size: 0.8em;"><< refresh page <ctrl-R> for another health tip >></p>"""
+
+    html_tip = f'{html_tip}<p style="font-size: 1.2em;">{health_tips[random.randint(0, len(health_tips))]}</p>{html_end}'
     return HTMLResponse(content=html_tip, status_code=200)
 
 @app.get("/", response_class=HTMLResponse)
